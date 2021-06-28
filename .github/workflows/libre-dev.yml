@@ -1,0 +1,40 @@
+name: libre-dev
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'libre/dev/Dockerfile'
+      - '.github/workflows/libre-dev.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'libre/dev/Dockerfile'
+      - '.github/workflows/libre-dev.yml'
+
+env:
+  VERSION: 2021062801
+  IMAGE_NAME: ${{ github.repository }}/libre-dev
+
+jobs:
+  libre-dev:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Log into registry
+      uses: docker/login-action@v1
+      with:
+        registry: "ghcr.io"
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build
+      run: docker build libre/dev -t libre-dev
+
+    - name: Tag and Push image
+      if: github.event_name != 'pull_request'
+      run: |
+        docker tag libre-dev ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+        docker tag libre-dev ghcr.io/${{ env.IMAGE_NAME }}:latest
+        docker push ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+        docker push ghcr.io/${{ env.IMAGE_NAME }}:latest
