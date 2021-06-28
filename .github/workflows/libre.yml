@@ -3,8 +3,14 @@ name: libre
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'libre/Dockerfile'
+      - '.github/workflows/libre.yml'
   pull_request:
     branches: [ main ]
+    paths:
+      - 'libre/Dockerfile'
+      - '.github/workflows/libre.yml'
 
 env:
   VERSION: 2.0.1
@@ -29,4 +35,6 @@ jobs:
       if: github.event_name != 'pull_request'
       run: |
         docker tag libre ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+        docker tag libre ghcr.io/${{ env.IMAGE_NAME }}:latest
         docker push ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+        docker push ghcr.io/${{ env.IMAGE_NAME }}:latest
