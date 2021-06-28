@@ -18,9 +18,9 @@ jobs:
     - name: Log into registry
       uses: docker/login-action@v1
       with:
-	registry: "ghcr.io"
-	username: ${{ github.actor }}
-	password: ${{ secrets.GITHUB_TOKEN }}
+        registry: "ghcr.io"
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build
       run: docker build libre -t libre --build_arg version=${{ env.VERSION }}
