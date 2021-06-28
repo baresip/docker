@@ -23,7 +23,7 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build
-      run: docker build libre -t libre --build_arg version=${{ env.VERSION }}
+      run: docker build libre -t libre --build-arg version=${{ env.VERSION }}
 
     - name: Tag and Push image
       if: github.event_name != 'pull_request'
