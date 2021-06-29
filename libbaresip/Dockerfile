@@ -1,5 +1,6 @@
 FROM ghcr.io/baresip/docker/librem:latest
 ARG version
+RUN install_packages libopus-dev
 WORKDIR /root/
 RUN wget https://github.com/baresip/baresip/archive/refs/tags/v$version.tar.gz && \
     tar -xvzf v$version.tar.gz && \

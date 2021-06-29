@@ -1,5 +1,6 @@
 FROM ghcr.io/baresip/docker/librem-dev:960cdb7
 ARG version
+RUN install_packages libopus-dev
 WORKDIR /root/
 RUN git clone https://github.com/baresip/baresip.git
 RUN cd baresip && git checkout $version
