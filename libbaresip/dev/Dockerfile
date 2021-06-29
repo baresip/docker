@@ -4,3 +4,4 @@ WORKDIR /root/
 RUN git clone https://github.com/baresip/baresip.git
 RUN cd baresip && git checkout $version
 RUN cd baresip && make install DESTDIR=dist && cp -a dist/usr/* /usr/
+RUN cd baresip && make install-dev DESTDIR=dist && cp -a dist/usr/* /usr/
