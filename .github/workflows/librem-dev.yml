@@ -13,7 +13,7 @@ on:
       - '.github/workflows/librem-dev.yml'
 
 env:
-  VERSION: 960cdb7 
+  VERSION: 960cdb7
   IMAGE_NAME: ${{ github.repository }}/librem-dev
 
 jobs:
