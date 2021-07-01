@@ -13,7 +13,7 @@ on:
       - '.github/workflows/libbaresip-dev.yml'
 
 env:
-  VERSION: 1104813
+  VERSION: 1e73b15c
   IMAGE_NAME: ${{ github.repository }}/libbaresip-dev
 
 jobs:
