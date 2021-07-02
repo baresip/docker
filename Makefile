@@ -7,8 +7,8 @@ BARESIP_GIT := $(shell [ -f ../baresip/Makefile ] && \
 
 .PHONY: update_dev
 update_dev:
-	@sed -i "s/VERSION:.*/VERSION: $(LIBRE_GIT)/" .github/workflows/libre-dev.yml
+	@sed -i "s/VERSION_RE:.*/VERSION_RE: $(LIBRE_GIT)/" .github/workflows/dev.yml
+	@sed -i "s/VERSION_REM:.*/VERSION_REM: $(LIBREM_GIT)/" .github/workflows/dev.yml
+	@sed -i "s/VERSION_BARESIP:.*/VERSION_BARESIP: $(BARESIP_GIT)/" .github/workflows/dev.yml
 	@sed -i "s/libre-dev:.*/libre-dev:$(LIBRE_GIT)/" librem/dev/Dockerfile
-	@sed -i "s/VERSION:.*/VERSION: $(LIBREM_GIT)/" .github/workflows/librem-dev.yml
 	@sed -i "s/libre-dev:.*/librem-dev:$(LIBREM_GIT)/" libbaresip/dev/Dockerfile
-	@sed -i "s/VERSION:.*/VERSION: $(BARESIP_GIT)/" .github/workflows/libbaresip-dev.yml
