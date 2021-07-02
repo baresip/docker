@@ -11,9 +11,14 @@ on:
     paths:
       - 'libbaresip/dev/Dockerfile'
       - '.github/workflows/libbaresip-dev.yml'
+  workflow_run:
+    workflows: ["libre-dev", "librem-dev"]
+    branches: [ main ]
+    types: 
+      - completed
 
 env:
-  VERSION: 1e73b15c
+  VERSION: d278038e
   IMAGE_NAME: ${{ github.repository }}/libbaresip-dev
 
 jobs:
