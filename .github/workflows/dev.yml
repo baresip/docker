@@ -47,6 +47,7 @@ jobs:
   librem-dev:
     env:
         IMAGE_NAME: ${{ github.repository }}/librem-dev
+    needs: [ "libre-dev" ]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -73,6 +74,7 @@ jobs:
   libbaresip-dev:
     env:
         IMAGE_NAME: ${{ github.repository }}/libbaresip-dev
+    needs: [ "librem-dev" ]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
