@@ -13,9 +13,9 @@ on:
       - '.github/workflows/dev.yml'
 
 env:
-  VERSION_RE: 4915d6f5
+  VERSION_RE: fb0b0043
   VERSION_REM: 960cdb7
-  VERSION_BARESIP: d278038e
+  VERSION_BARESIP: b0e89561
 
 jobs:
   libre-dev:
