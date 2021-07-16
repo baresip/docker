@@ -1,4 +1,4 @@
-FROM ghcr.io/baresip/docker/libre-dev:fb0b0043
+FROM ghcr.io/baresip/docker/libre-dev:82dd8673
 ARG version
 WORKDIR /root/
 RUN git clone https://github.com/baresip/rem.git
