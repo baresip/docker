@@ -1,4 +1,4 @@
-FROM ghcr.io/baresip/docker/librem-dev:960cdb7
+FROM ghcr.io/baresip/docker/librem-dev:277a9d9
 ARG version
 RUN install_packages libopus-dev
 WORKDIR /root/

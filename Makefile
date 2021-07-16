@@ -11,4 +11,4 @@ update_dev:
 	@sed -i "s/VERSION_REM:.*/VERSION_REM: $(LIBREM_GIT)/" .github/workflows/dev.yml
 	@sed -i "s/VERSION_BARESIP:.*/VERSION_BARESIP: $(BARESIP_GIT)/" .github/workflows/dev.yml
 	@sed -i "s/libre-dev:.*/libre-dev:$(LIBRE_GIT)/" librem/dev/Dockerfile
-	@sed -i "s/libre-dev:.*/librem-dev:$(LIBREM_GIT)/" libbaresip/dev/Dockerfile
+	@sed -i "s/librem-dev:.*/librem-dev:$(LIBREM_GIT)/" libbaresip/dev/Dockerfile

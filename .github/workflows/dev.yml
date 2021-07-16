@@ -15,7 +15,7 @@ on:
 env:
   VERSION_RE: 82dd8673
   VERSION_REM: 277a9d9
-  VERSION_BARESIP: eb09b096
+  VERSION_BARESIP: d4ff4ed5
 
 jobs:
   libre-dev:
