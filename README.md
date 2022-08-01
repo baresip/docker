@@ -2,6 +2,12 @@
 
 Docker Images for libre, librem and baresip
 
+## Usage 
+
+```bash
+podman run --rm -it ghcr.io/baresip/docker/baresip:latest
+```
+
 ## Usage libbaresip-dev
 
 ```bash
