@@ -2,9 +2,7 @@
 set -e
 
 if [ "$1" = 'baresip' ]; then
-    chown -R baresip /baresip
-    shift
-    su baresip -s /usr/bin/baresip -- "$@"
+    /usr/bin/baresip "$@"
 else
     exec "$@"
 fi

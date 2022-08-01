@@ -9,8 +9,7 @@ RUN cd baresip && make install DESTDIR=dist && cp -a dist/usr/* /usr/
 
 # --- Final build image ---
 FROM bitnami/minideb:buster
-RUN install_packages libopus0 ca-certificates openssl libasound2 && \
-    useradd -ms /bin/bash baresip --home-dir /baresip
+RUN install_packages libopus0 ca-certificates openssl libasound2
 COPY --from=0 /root/re/dist/usr/ /usr/
 COPY --from=0 /root/rem/dist/usr/ /usr/
 COPY --from=0 /root/baresip/dist/usr/ /usr/
