@@ -13,7 +13,7 @@ on:
       - '.github/workflows/stable.yml'
 
 env:
-  VERSION_RE: v2.6.0
+  VERSION_RE: v2.6.1
   VERSION_REM: v2.6.0 
   VERSION_BARESIP: v2.6.0
 
