@@ -18,7 +18,7 @@ env:
   VERSION_BARESIP: v2.6.0
 
 jobs:
-  libre-dev:
+  libre:
     env:
         IMAGE_NAME: ${{ github.repository }}/libre
     runs-on: ubuntu-latest
@@ -45,10 +45,10 @@ jobs:
         docker push ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION_RE }}
         docker push ghcr.io/${{ env.IMAGE_NAME }}:latest
 
-  librem-dev:
+  librem:
     env:
         IMAGE_NAME: ${{ github.repository }}/librem
-    needs: [ "libre-dev" ]
+    needs: [ "libre" ]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -74,10 +74,10 @@ jobs:
         docker push ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION_REM }}
         docker push ghcr.io/${{ env.IMAGE_NAME }}:latest
 
-  baresip-dev:
+  baresip:
     env:
         IMAGE_NAME: ${{ github.repository }}/baresip
-    needs: [ "librem-dev" ]
+    needs: [ "librem" ]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
