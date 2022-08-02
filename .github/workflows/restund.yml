@@ -1,0 +1,47 @@
+name: restund
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'libre/Dockerfile'
+      - 'restund/Dockerfile'
+      - '.github/workflows/restund.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'libre/Dockerfile'
+      - 'restund/Dockerfile'
+      - '.github/workflows/restund.yml'
+
+env:
+  VERSION_RESTUND: main
+
+jobs:
+  restund:
+    env:
+        IMAGE_NAME: ${{ github.repository }}/restund
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Log into registry
+      uses: docker/login-action@v1
+      with:
+        registry: "ghcr.io"
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build
+      run: |
+        docker build restund -t restund \
+          --build-arg VERSION=${{ env.VERSION_RESTUND }} \
+          --build-arg IMAGE=ghcr.io/baresip/docker/libre:latest \
+          --build-arg RELEASE=1
+
+    - name: Tag and Push image
+      if: github.event_name != 'pull_request'
+      run: |
+        docker tag restund ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION_RESTUND }}
+        docker tag restund ghcr.io/${{ env.IMAGE_NAME }}:latest
+        docker push ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION_RESTUND }}
+        docker push ghcr.io/${{ env.IMAGE_NAME }}:latest
