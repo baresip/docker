@@ -24,7 +24,7 @@ jobs:
       - name: Delete 'stable' containers older two months
         uses: snok/container-retention-policy@v1
         with:
-          image-names: libre, librem, baresip, restund
+          image-names: docker/*
           cut-off: two months ago UTC
           account-type: org
           org-name: baresip
