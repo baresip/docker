@@ -1,4 +1,4 @@
-FROM bitnami/minideb:buster
+FROM bitnami/minideb:bullseye
 ARG VERSION
 ARG RELEASE
 WORKDIR /root/
