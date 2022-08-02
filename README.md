@@ -32,3 +32,13 @@ docker run --rm -it --volume=/home/user/.baresip:/baresip baresip
 ```bash
 docker run --rm -it --device=/dev/snd baresip
 ```
+
+### Podman
+
+All examples should work fine with podman too, just replace "docker" with
+"podman":
+
+```bash
+podman pull ghcr.io/baresip/docker/baresip:latest
+podman run --rm -it baresip
+```
