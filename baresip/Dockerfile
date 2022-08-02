@@ -17,4 +17,4 @@ COPY --from=0 /root/baresip/dist/usr/ /usr/
 WORKDIR /baresip
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["baresip", "-f", "/baresip"]
+CMD ["baresip"]

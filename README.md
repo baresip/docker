@@ -19,13 +19,13 @@ docker run --rm -it baresip-dev
 ### Baresip cli options
 ```bash
 docker run --rm -it baresip baresip -h
-docker run --rm -it baresip baresip -f /baresip -v
-docker run --rm -it baresip baresip -f /baresip -4
+docker run --rm -it baresip baresip -v
+docker run --rm -it baresip baresip -4
 ```
 
 ### Mount config path
 ```bash
-docker run --rm -it --volume=/home/user/.baresip:/baresip baresip
+docker run --rm -it --volume=/home/user/.baresip:/root/.baresip baresip
 ```
 
 ### With alsa devices
