@@ -1,11 +1,12 @@
-FROM ghcr.io/baresip/docker/librem:latest
-ARG version
+ARG IMAGE=ghcr.io/baresip/docker/librem:latest
+FROM ${IMAGE}
+ARG VERSION
+ARG RELEASE
 RUN install_packages libopus-dev libasound2-dev
 WORKDIR /root/
-RUN wget https://github.com/baresip/baresip/archive/refs/tags/v$version.tar.gz && \
-    tar -xvzf v$version.tar.gz && \
-    mv baresip-$version baresip
-RUN cd baresip && make install DESTDIR=dist && cp -a dist/usr/* /usr/
+RUN git clone https://github.com/baresip/baresip.git && \
+    cd baresip && git checkout ${VERSION} && \
+    make CC=clang-11 info install RELEASE=${RELEASE} DESTDIR=dist && cp -a dist/usr/* /usr/
 
 # --- Final build image ---
 FROM bitnami/minideb:buster

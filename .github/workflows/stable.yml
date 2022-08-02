@@ -1,26 +1,26 @@
-name: dev
+name: stable
 
 on:
   push:
     branches: [ main ]
     paths:
       - '*/Dockerfile'
-      - '.github/workflows/dev.yml'
+      - '.github/workflows/stable.yml'
   pull_request:
     branches: [ main ]
     paths:
       - '*/Dockerfile'
-      - '.github/workflows/dev.yml'
+      - '.github/workflows/stable.yml'
 
 env:
-  VERSION_RE: main
-  VERSION_REM: main 
-  VERSION_BARESIP: main 
+  VERSION_RE: v2.6.0
+  VERSION_REM: v2.6.0 
+  VERSION_BARESIP: v2.6.0
 
 jobs:
   libre-dev:
     env:
-        IMAGE_NAME: ${{ github.repository }}/libre-dev
+        IMAGE_NAME: ${{ github.repository }}/libre
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -34,7 +34,8 @@ jobs:
     - name: Build
       run: |
         docker build libre -t libre-dev \
-            --build-arg VERSION=${{ env.VERSION_RE }}
+            --build-arg VERSION=${{ env.VERSION_RE }} \
+            --build-arg RELEASE=1
 
     - name: Tag and Push image
       if: github.event_name != 'pull_request'
@@ -46,7 +47,7 @@ jobs:
 
   librem-dev:
     env:
-        IMAGE_NAME: ${{ github.repository }}/librem-dev
+        IMAGE_NAME: ${{ github.repository }}/librem
     needs: [ "libre-dev" ]
     runs-on: ubuntu-latest
     steps:
@@ -62,7 +63,8 @@ jobs:
       run: |
         docker build librem -t librem-dev \
             --build-arg VERSION=${{ env.VERSION_REM }} \
-            --build-arg IMAGE=ghcr.io/baresip/docker/libre-dev:latest
+            --build-arg IMAGE=ghcr.io/baresip/docker/libre-dev:latest \
+            --build-arg RELEASE=1
 
     - name: Tag and Push image
       if: github.event_name != 'pull_request'
@@ -74,7 +76,7 @@ jobs:
 
   baresip-dev:
     env:
-        IMAGE_NAME: ${{ github.repository }}/baresip-dev
+        IMAGE_NAME: ${{ github.repository }}/baresip
     needs: [ "librem-dev" ]
     runs-on: ubuntu-latest
     steps:
@@ -90,7 +92,8 @@ jobs:
       run: |
         docker build baresip -t baresip-dev \
           --build-arg VERSION=${{ env.VERSION_BARESIP }} \
-          --build-arg IMAGE=ghcr.io/baresip/docker/librem-dev:latest
+          --build-arg IMAGE=ghcr.io/baresip/docker/librem-dev:latest \
+          --build-arg RELEASE=1
 
     - name: Tag and Push image
       if: github.event_name != 'pull_request'
