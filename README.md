@@ -4,12 +4,31 @@ Docker Images for libre, librem and baresip
 
 ## Usage 
 
+### Run latest stable version
 ```bash
-docker run --rm -it --volume=/home/user/.baresip:/baresip ghcr.io/baresip/docker/baresip:latest
+docker pull ghcr.io/baresip/docker/baresip:latest
+docker run --rm -it baresip
+```
+
+### Run latest dev version
+```bash
+docker pull ghcr.io/baresip/docker/baresip-dev:latest
+docker run --rm -it baresip-dev
+```
+
+### Baresip cli options
+```bash
+docker run --rm -it baresip baresip --help
+docker run --rm -it baresip baresip -v
+```
+
+### Mount config path
+```bash
+docker run --rm -it --volume=/home/user/.baresip:/baresip baresip
 ```
 
 ### With alsa devices
 
 ```bash
-docker run --rm -it --device=/dev/snd ghcr.io/baresip/docker/baresip:latest
+docker run --rm -it --device=/dev/snd baresip
 ```
