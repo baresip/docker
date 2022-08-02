@@ -40,8 +40,8 @@ jobs:
     - name: Tag and Push image
       if: github.event_name != 'pull_request'
       run: |
-        docker tag libre-dev ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION_RE }}
-        docker tag libre-dev ghcr.io/${{ env.IMAGE_NAME }}:latest
+        docker tag libre ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION_RE }}
+        docker tag libre ghcr.io/${{ env.IMAGE_NAME }}:latest
         docker push ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION_RE }}
         docker push ghcr.io/${{ env.IMAGE_NAME }}:latest
 
@@ -69,8 +69,8 @@ jobs:
     - name: Tag and Push image
       if: github.event_name != 'pull_request'
       run: |
-        docker tag librem-dev ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION_REM }}
-        docker tag librem-dev ghcr.io/${{ env.IMAGE_NAME }}:latest
+        docker tag librem ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION_REM }}
+        docker tag librem ghcr.io/${{ env.IMAGE_NAME }}:latest
         docker push ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION_REM }}
         docker push ghcr.io/${{ env.IMAGE_NAME }}:latest
 
@@ -98,7 +98,7 @@ jobs:
     - name: Tag and Push image
       if: github.event_name != 'pull_request'
       run: |
-        docker tag libbaresip-dev ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION_BARESIP }}
-        docker tag libbaresip-dev ghcr.io/${{ env.IMAGE_NAME }}:latest
+        docker tag baresip ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION_BARESIP }}
+        docker tag baresip ghcr.io/${{ env.IMAGE_NAME }}:latest
         docker push ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION_BARESIP }}
         docker push ghcr.io/${{ env.IMAGE_NAME }}:latest
