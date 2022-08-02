@@ -4,18 +4,18 @@ on:
   push:
     branches: [ main ]
     paths:
-      - '*/dev/Dockerfile'
+      - '*/Dockerfile'
       - '.github/workflows/dev.yml'
   pull_request:
     branches: [ main ]
     paths:
-      - '*/dev/Dockerfile'
+      - '*/Dockerfile'
       - '.github/workflows/dev.yml'
 
 env:
-  VERSION_RE: 82dd8673
-  VERSION_REM: 277a9d9
-  VERSION_BARESIP: d4ff4ed5
+  VERSION_RE: main
+  VERSION_REM: main 
+  VERSION_BARESIP: main 
 
 jobs:
   libre-dev:
