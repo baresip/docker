@@ -33,7 +33,7 @@ jobs:
 
     - name: Build
       run: |
-        docker build libre/dev -t libre-dev \
+        docker build libre -t libre-dev \
             --build-arg version=${{ env.VERSION_RE }}
 
     - name: Tag and Push image
