@@ -13,7 +13,7 @@ on:
       - '.github/workflows/libre.yml'
 
 env:
-  VERSION: 2.6.0
+  VERSION: v2.6.0
   IMAGE_NAME: ${{ github.repository }}/libre
 
 jobs:
@@ -29,7 +29,7 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build
-      run: docker build libre -t libre --build-arg version=${{ env.VERSION }}
+      run: docker build libre -t libre --build-arg version=${{ env.VERSION }} --build-arg release=1
 
     - name: Tag and Push image
       if: github.event_name != 'pull_request'
