@@ -19,7 +19,7 @@ docker run --rm -it baresip-dev
 ### Baresip cli options
 ```bash
 docker run --rm -it baresip baresip --help
-docker run --rm -it baresip baresip -v
+docker run --rm -it baresip baresip -f /baresip -v
 ```
 
 ### Mount config path
@@ -35,8 +35,8 @@ docker run --rm -it --device=/dev/snd baresip
 
 ### Podman
 
-All examples should work fine with podman too, just replace "docker" with
-"podman":
+All examples should work fine with podman too, just replace `docker` with
+`podman`:
 
 ```bash
 podman pull ghcr.io/baresip/docker/baresip:latest
