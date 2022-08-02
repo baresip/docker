@@ -18,8 +18,9 @@ docker run --rm -it baresip-dev
 
 ### Baresip cli options
 ```bash
-docker run --rm -it baresip baresip --help
+docker run --rm -it baresip baresip -h
 docker run --rm -it baresip baresip -f /baresip -v
+docker run --rm -it baresip baresip -f /baresip -4
 ```
 
 ### Mount config path
