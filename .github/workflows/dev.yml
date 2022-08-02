@@ -11,6 +11,8 @@ on:
     paths:
       - '*/Dockerfile'
       - '.github/workflows/dev.yml'
+  schedule:
+    - cron: '0 7 * * *'
 
 env:
   VERSION_RE: main

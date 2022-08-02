@@ -11,11 +11,13 @@ on:
     paths:
       - '*/Dockerfile'
       - '.github/workflows/stable.yml'
+  schedule:
+    - cron: '0 10 2 * *'
 
 env:
-  VERSION_RE: v2.6.1
-  VERSION_REM: v2.6.0 
-  VERSION_BARESIP: v2.6.0
+  VERSION_RE: stable
+  VERSION_REM: stable 
+  VERSION_BARESIP: stable
 
 jobs:
   libre:
