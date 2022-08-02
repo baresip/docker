@@ -18,7 +18,7 @@ jobs:
           account-type: org
           org-name: baresip
           keep-at-least: 1
-          skip-tags: latest
+          untagged-only: true
           token: ${{ secrets.PAT }}
 
       - name: Delete 'stable' containers older two months
