@@ -13,7 +13,7 @@ jobs:
       - name: Delete 'dev' containers older than a week
         uses: snok/container-retention-policy@v1
         with:
-          image-names: libre-dev, librem-dev, baresip-dev
+          image-names: docker/*-dev
           cut-off: A week ago UTC
           account-type: org
           org-name: baresip
