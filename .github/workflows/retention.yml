@@ -1,0 +1,32 @@
+name: Delete old container images
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+
+jobs:
+  clean-ghcr:
+    name: Delete old unused container images
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete 'dev' containers older than a week
+        uses: snok/container-retention-policy@v1
+        with:
+          image-names: libre-dev, librem-dev, baresip-dev
+          cut-off: A week ago UTC
+          account-type: org
+          org-name: baresip
+          keep-at-least: 1
+          skip-tags: latest
+          token: ${{ secrets.PAT }}
+
+      - name: Delete 'stable' containers older two months
+        uses: snok/container-retention-policy@v1
+        with:
+          image-names: libre, librem, baresip, restund
+          cut-off: two months ago UTC
+          account-type: org
+          org-name: baresip
+          keep-at-least: 1
+          skip-tags: latest
+          token: ${{ secrets.PAT }}
