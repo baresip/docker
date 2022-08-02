@@ -1,7 +1,8 @@
-FROM ghcr.io/baresip/docker/libre:latest
-ARG version
+ARG IMAGE=ghcr.io/baresip/docker/libre:latest
+FROM ${IMAGE}
+ARG VERSION
+ARG RELEASE
 WORKDIR /root/
-RUN wget https://github.com/baresip/rem/archive/refs/tags/v$version.tar.gz && \
-	tar -xvzf v$version.tar.gz && rm v$version.tar.gz && \
-	mv rem-$version rem && \
-	cd rem && make install DESTDIR=dist && cp -a dist/usr/* /usr/
+RUN git clone https://github.com/baresip/rem.git && \
+	cd rem && git checkout ${VERSION} && \
+	make CC=clang-11 info install RELEASE=${RELEASE} DESTDIR=dist && cp -a dist/usr/* /usr/
