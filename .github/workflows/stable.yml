@@ -65,7 +65,7 @@ jobs:
       run: |
         docker build librem -t librem \
             --build-arg VERSION=${{ env.VERSION_REM }} \
-            --build-arg IMAGE=ghcr.io/baresip/docker/libre-dev:latest \
+            --build-arg IMAGE=ghcr.io/baresip/docker/libre:latest \
             --build-arg RELEASE=1
 
     - name: Tag and Push image
@@ -94,7 +94,7 @@ jobs:
       run: |
         docker build baresip -t baresip \
           --build-arg VERSION=${{ env.VERSION_BARESIP }} \
-          --build-arg IMAGE=ghcr.io/baresip/docker/librem-dev:latest \
+          --build-arg IMAGE=ghcr.io/baresip/docker/librem:latest \
           --build-arg RELEASE=1
 
     - name: Tag and Push image
