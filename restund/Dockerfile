@@ -16,6 +16,8 @@ RUN install_packages ca-certificates openssl
 COPY --from=0 /root/dist/usr/ /usr/
 COPY --from=0 /root/restund/etc/ /etc/
 WORKDIR /root
+USER root
+ENV USER=root
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["restund", "-n"]
