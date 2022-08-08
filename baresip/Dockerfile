@@ -17,6 +17,8 @@ FROM bitnami/minideb:bullseye
 RUN install_packages libopus0 ca-certificates openssl libasound2 libmosquitto1 libspandsp2
 COPY --from=0 /root/dist/usr/ /usr/
 WORKDIR /root
+USER root
+ENV USER=root
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["baresip"]
