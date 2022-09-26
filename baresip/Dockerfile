@@ -5,7 +5,7 @@ RUN install_packages libopus-dev libasound2-dev libmosquitto-dev libspandsp-dev
 WORKDIR /root/
 RUN git clone https://github.com/baresip/baresip.git && \
     cd baresip && git checkout ${VERSION} && \
-    cmake -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_C_COMPILER=clang-11 && \
+    cmake -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_C_COMPILER=clang-11 -DCMAKE_CXX_COMPILER=clang++-11 && \
     cmake --build build -j && \
     cmake --install build --prefix dist && cp -a dist/* /usr/
 RUN mkdir /root/dist && \
