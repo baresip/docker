@@ -2,7 +2,7 @@ ARG IMAGE=ghcr.io/baresip/docker/librem:latest
 FROM ${IMAGE}
 ARG VERSION
 ARG RELEASE
-RUN install_packages libopus-dev libasound2-dev libmosquitto-dev libspandsp-dev
+RUN install_packages libopus-dev libasound2-dev libmosquitto-dev libspandsp-dev libssl-dev libpulse-dev
 WORKDIR /root/
 RUN git clone https://github.com/baresip/baresip.git && \
     cd baresip && git checkout ${VERSION} && \
@@ -14,7 +14,7 @@ RUN mkdir /root/dist && \
 
 # --- Final build image ---
 FROM bitnami/minideb:bullseye
-RUN install_packages libopus0 ca-certificates openssl libasound2 libmosquitto1 libspandsp2
+RUN install_packages libopus0 ca-certificates openssl libasound2 libmosquitto1 libspandsp2 libpulse0 pulseaudio
 COPY --from=0 /root/dist/usr/ /usr/
 WORKDIR /root
 USER root
