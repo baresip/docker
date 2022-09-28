@@ -2,7 +2,7 @@ ARG IMAGE=ghcr.io/baresip/docker/librem:latest
 FROM ${IMAGE}
 ARG VERSION
 ARG RELEASE
-RUN install_packages libopus-dev libasound2-dev libmosquitto-dev libspandsp-dev libssl-dev libpulse-dev
+RUN install_packages libopus-dev libasound2-dev libmosquitto-dev libspandsp-dev libpulse-dev
 WORKDIR /root/
 RUN git clone https://github.com/baresip/baresip.git && \
     cd baresip && git checkout ${VERSION} && \
