@@ -16,7 +16,7 @@ RUN mkdir /root/dist && \
 # --- Final build image ---
 FROM bitnami/minideb:bullseye
 RUN install_packages libopus0 ca-certificates openssl libasound2 libmosquitto1 libspandsp2 libpulse0 pulseaudio
-COPY --from=0 /root/dist/usr/ /usr/
+COPY --from=0 /root/dist/* /usr/
 WORKDIR /root
 USER root
 ENV USER=root
