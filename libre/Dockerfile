@@ -1,8 +1,9 @@
 FROM bitnami/minideb:bullseye
 ARG VERSION
-ARG RELEASE
 WORKDIR /root/
-RUN install_packages clang-11 make cmake pkg-config git libssl-dev wget ca-certificates && \
+RUN install_packages clang-11 make cmake pkg-config git libssl-dev wget ca-certificates libz-dev && \
     git clone https://github.com/baresip/re.git && \
     cd re && git checkout ${VERSION} && \
-    make info install CC=clang-11 RELEASE=${RELEASE} DESTDIR=dist -j && cp -a dist/usr/* /usr/
+    cmake -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_C_COMPILER=clang-11 && \
+    cmake --build build -j && \
+    cmake --install build --prefix dist && cp -a dist/* /usr/
