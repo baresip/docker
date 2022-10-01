@@ -8,15 +8,15 @@ RUN git clone https://github.com/baresip/baresip.git && \
     cmake -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_C_COMPILER=clang-11 -DCMAKE_CXX_COMPILER=clang++-11 && \
     cmake --build build -j && \
     cmake --install build --prefix dist && cp -a dist/* /usr/
-RUN mkdir /root/dist && \
-    cp -a /root/re/dist/* /root/dist/ && \
-    cp -a /root/rem/dist/* /root/dist/ && \
-    cp -a /root/baresip/dist/* /root/dist/
+RUN mkdir -p /root/dist/usr && \
+    cp -a /root/re/dist/* /root/dist/usr/ && \
+    cp -a /root/rem/dist/* /root/dist/usr/ && \
+    cp -a /root/baresip/dist/* /root/dist/usr/
 
 # --- Final build image ---
 FROM bitnami/minideb:bullseye
 RUN install_packages libopus0 ca-certificates openssl libasound2 libmosquitto1 libspandsp2 libpulse0 pulseaudio
-COPY --from=0 /root/dist/* /usr/
+COPY --from=0 /root/dist/usr/ /usr/
 WORKDIR /root
 USER root
 ENV USER=root
