@@ -16,9 +16,9 @@ on:
   workflow_dispatch:
 
 env:
-  VERSION_RE: stable
-  VERSION_REM: stable
-  VERSION_BARESIP: stable
+  VERSION_RE: v2.10.0
+  VERSION_REM: v2.10.0
+  VERSION_BARESIP: v2.10.0
 
 jobs:
   libre:
