@@ -16,7 +16,6 @@ on:
 
 env:
   VERSION_RE: main
-  VERSION_REM: main 
   VERSION_BARESIP: main 
 
 jobs:
@@ -46,38 +45,10 @@ jobs:
         docker push ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION_RE }}
         docker push ghcr.io/${{ env.IMAGE_NAME }}:latest
 
-  librem-dev:
-    env:
-        IMAGE_NAME: ${{ github.repository }}/librem-dev
-    needs: [ "libre-dev" ]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: Log into registry
-      uses: docker/login-action@v2
-      with:
-        registry: "ghcr.io"
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Build
-      run: |
-        docker build librem -t librem-dev \
-            --build-arg VERSION=${{ env.VERSION_REM }} \
-            --build-arg IMAGE=ghcr.io/baresip/docker/libre-dev:latest
-
-    - name: Tag and Push image
-      if: github.event_name != 'pull_request'
-      run: |
-        docker tag librem-dev ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION_REM }}
-        docker tag librem-dev ghcr.io/${{ env.IMAGE_NAME }}:latest
-        docker push ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION_REM }}
-        docker push ghcr.io/${{ env.IMAGE_NAME }}:latest
-
   baresip-dev:
     env:
         IMAGE_NAME: ${{ github.repository }}/baresip-dev
-    needs: [ "librem-dev" ]
+    needs: [ "libre-dev" ]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -92,7 +63,7 @@ jobs:
       run: |
         docker build baresip -t baresip-dev \
           --build-arg VERSION=${{ env.VERSION_BARESIP }} \
-          --build-arg IMAGE=ghcr.io/baresip/docker/librem-dev:latest
+          --build-arg IMAGE=ghcr.io/baresip/docker/libre-dev:latest
 
     - name: Tag and Push image
       if: github.event_name != 'pull_request'

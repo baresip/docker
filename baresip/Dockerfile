@@ -1,4 +1,4 @@
-ARG IMAGE=ghcr.io/baresip/docker/librem:latest
+ARG IMAGE=ghcr.io/baresip/docker/libre:latest
 FROM ${IMAGE}
 ARG VERSION
 RUN install_packages libopus-dev libasound2-dev libmosquitto-dev libspandsp-dev libpulse-dev
@@ -11,7 +11,6 @@ RUN git clone -b ${VERSION} --single-branch https://github.com/baresip/baresip.g
     cmake --install build --prefix dist && cp -a dist/* /usr/
 RUN mkdir -p /root/dist/usr && \
     cp -a /root/re/dist/* /root/dist/usr/ && \
-    cp -a /root/rem/dist/* /root/dist/usr/ && \
     cp -a /root/baresip/dist/* /root/dist/usr/
 
 # --- Final build image ---

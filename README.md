@@ -1,6 +1,6 @@
 # docker
 
-Docker Images for libre, librem and baresip
+Docker Images for libre and baresip
 
 ## Usage 
 
