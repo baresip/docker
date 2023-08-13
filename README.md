@@ -34,6 +34,12 @@ docker run --rm -it --volume=/home/user/.baresip:/root/.baresip baresip
 docker run --rm -it --device=/dev/snd baresip
 ```
 
+### Host Networking
+
+```bash
+docker run --network host --rm -it baresip
+```
+
 ### Podman
 
 All examples should work fine with podman too, just replace `docker` with
