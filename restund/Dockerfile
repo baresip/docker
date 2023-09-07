@@ -3,8 +3,8 @@ FROM ${IMAGE}
 ARG VERSION
 ARG RELEASE
 WORKDIR /root/
-RUN git clone https://github.com/baresip/restund.git && \
-    cd restund && git checkout ${VERSION} && \
+RUN git clone -b ${VERSION} --depth=1 https://github.com/baresip/restund.git && \
+    cd restund && \
     make CC=clang-11 info install RELEASE=${RELEASE} DESTDIR=dist -j
 RUN mkdir /root/dist && \
     cp -a /root/re/dist/usr /root/dist/ && \

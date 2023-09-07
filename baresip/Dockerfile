@@ -3,7 +3,7 @@ FROM ${IMAGE}
 ARG VERSION
 RUN install_packages libopus-dev libasound2-dev libmosquitto-dev libspandsp-dev libpulse-dev
 WORKDIR /root/
-RUN git clone -b ${VERSION} --single-branch https://github.com/baresip/baresip.git && \
+RUN git clone -b ${VERSION} --depth=1 https://github.com/baresip/baresip.git && \
     cd baresip && \
     cmake -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_C_COMPILER=clang-11 \
         -DCMAKE_CXX_COMPILER=clang++-11 -DCMAKE_INSTALL_PREFIX=/usr && \
