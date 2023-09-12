@@ -14,7 +14,8 @@ RUN git clone -b ${VERSION} --depth=1 https://github.com/baresip/restund.git && 
 FROM bitnami/minideb:bookworm
 RUN install_packages ca-certificates openssl
 COPY --from=0 /root/re/dist/ /usr/
-COPY --from=0 /root/restund/dist/ /
+COPY --from=0 /root/restund/dist/etc/ /etc/
+COPY --from=0 /root/restund/dist/bin/ /bin/
 WORKDIR /root
 USER root
 ENV USER=root
