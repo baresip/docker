@@ -5,8 +5,8 @@ ARG RELEASE
 WORKDIR /root/
 RUN git clone -b ${VERSION} --depth=1 https://github.com/baresip/restund.git && \
     cd restund && \
-    cmake -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_C_COMPILER=clang-11 \
-        -DCMAKE_CXX_COMPILER=clang++-11 -DCMAKE_INSTALL_PREFIX=/usr && \
+    cmake -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_C_COMPILER=clang-15 \
+        -DCMAKE_CXX_COMPILER=clang++-15 -DCMAKE_INSTALL_PREFIX=/usr && \
     cmake --build build -j && \
     cmake --install build --prefix dist && cp -a dist/* /usr/
 RUN mkdir /root/dist && \
