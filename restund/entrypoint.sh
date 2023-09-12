@@ -2,7 +2,7 @@
 set -e
 
 if [ "$1" = 'restund' ]; then
-    /usr/sbin/restund "$@"
+    /bin/restund "$@"
 else
     exec "$@"
 fi
