@@ -25,7 +25,7 @@ jobs:
         uses: snok/container-retention-policy@v2
         with:
           image-names: docker/*
-          cut-off: two months ago UTC
+          cut-off: six months ago UTC
           account-type: org
           org-name: baresip
           keep-at-least: 1
