@@ -16,7 +16,7 @@ on:
   workflow_dispatch:
 
 env:
-  VERSION_RE: v3.10.1
+  VERSION_RE: v3.10.0
   VERSION_BARESIP: v3.10.1
 
 jobs:
