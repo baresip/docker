@@ -17,7 +17,7 @@ on:
 
 env:
   VERSION_RE: v3.12.0
-  VERSION_BARESIP: v3.12.0
+  VERSION_BARESIP: v3.12.1
 
 jobs:
   libre:
