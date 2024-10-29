@@ -48,6 +48,7 @@ jobs:
         tags: |
           ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION_RE }}
           ghcr.io/${{ env.IMAGE_NAME }}:latest
+        build-args: VERSION=${{ env.VERSION_RE }}
 
   baresip-dev:
     env:
