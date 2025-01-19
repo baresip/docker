@@ -21,7 +21,7 @@ jobs:
           untagged-only: true
           token: ${{ secrets.PAT }}
 
-      - name: Delete 'stable' containers older two months
+      - name: Delete 'stable' containers older six months
         uses: snok/container-retention-policy@v2
         with:
           image-names: docker/*
