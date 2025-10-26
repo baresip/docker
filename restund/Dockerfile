@@ -11,8 +11,8 @@ RUN git clone -b ${VERSION} --depth=1 https://github.com/baresip/restund.git && 
     cmake --install build --prefix dist
 
 # --- Final build image ---
-FROM bitnami/minideb:bookworm
-RUN install_packages ca-certificates openssl
+FROM debian:trixie-slim
+RUN apt update && apt install -y ca-certificates openssl
 COPY --from=0 /root/re/dist/ /usr/
 COPY --from=0 /root/restund/dist/etc/ /etc/
 COPY --from=0 /root/restund/dist/bin/ /bin/
