@@ -1,7 +1,7 @@
 ARG IMAGE=ghcr.io/baresip/docker/libre:latest
 FROM ${IMAGE}
 ARG VERSION
-RUN apt install -y clang-19 libopus-dev libasound2-dev libmosquitto-dev libspandsp-dev libpulse-dev
+RUN apt update && apt install -y clang-19 libopus-dev libasound2-dev libmosquitto-dev libspandsp-dev libpulse-dev
 WORKDIR /root/
 RUN git clone -b ${VERSION} --depth=1 https://github.com/baresip/baresip.git && \
     cd baresip && \
@@ -15,7 +15,7 @@ RUN mkdir -p /root/dist/usr && \
 
 # --- Final build image ---
 FROM debian:trixie-slim
-RUN apt install -y libopus0 ca-certificates openssl libasound2 libmosquitto1 libspandsp2 libpulse0 pulseaudio
+RUN apt update && apt install -y libopus0 ca-certificates openssl libasound2 libmosquitto1 libspandsp2 libpulse0 pulseaudio
 COPY --from=0 /root/dist/usr/ /usr/
 WORKDIR /root
 USER root
