@@ -1,4 +1,4 @@
-FROM bitnami/minideb:bookworm
+FROM debian:trixie-slim
 ARG VERSION
 WORKDIR /root/
 RUN install_packages clang-19 make cmake pkg-config git libssl-dev wget ca-certificates libz-dev && \

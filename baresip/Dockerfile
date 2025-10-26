@@ -14,7 +14,7 @@ RUN mkdir -p /root/dist/usr && \
     cp -a /root/baresip/dist/* /root/dist/usr/
 
 # --- Final build image ---
-FROM bitnami/minideb:bookworm
+FROM debian:trixie-slim
 RUN install_packages libopus0 ca-certificates openssl libasound2 libmosquitto1 libspandsp2 libpulse0 pulseaudio
 COPY --from=0 /root/dist/usr/ /usr/
 WORKDIR /root
