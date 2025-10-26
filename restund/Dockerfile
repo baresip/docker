@@ -12,7 +12,7 @@ RUN git clone -b ${VERSION} --depth=1 https://github.com/baresip/restund.git && 
 
 # --- Final build image ---
 FROM debian:trixie-slim
-RUN install_packages ca-certificates openssl
+RUN apt install -y ca-certificates openssl
 COPY --from=0 /root/re/dist/ /usr/
 COPY --from=0 /root/restund/dist/etc/ /etc/
 COPY --from=0 /root/restund/dist/bin/ /bin/
