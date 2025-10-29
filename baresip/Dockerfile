@@ -15,7 +15,7 @@ RUN mkdir -p /root/dist/usr && \
 
 # --- Final build image ---
 FROM debian:trixie-slim
-RUN apt update && apt install -y libopus0 ca-certificates openssl libasound2 libmosquitto1 libspandsp2 libpulse0 pulseaudio
+RUN apt update && apt install -y --no-install-recommends libopus0 ca-certificates openssl libasound2 libmosquitto1 libspandsp2 libpulse0 pulseaudio
 COPY --from=0 /root/dist/usr/ /usr/
 WORKDIR /root
 USER root
