@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Delete 'dev' containers older than a week
-        uses: snok/container-retention-policy@v2
+        uses: snok/container-retention-policy@v3
         with:
           image-names: docker/*-dev
           cut-off: A week ago UTC
@@ -22,7 +22,7 @@ jobs:
           token: ${{ secrets.PAT }}
 
       - name: Delete 'stable' containers older six months
-        uses: snok/container-retention-policy@v2
+        uses: snok/container-retention-policy@v3
         with:
           image-names: docker/*
           cut-off: six months ago UTC
