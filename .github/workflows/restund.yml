@@ -15,7 +15,7 @@ on:
       - '.github/workflows/restund.yml'
 
 env:
-  VERSION_RESTUND: v3.9.0
+  VERSION_RESTUND: v4.9.0
 
 jobs:
   restund:
