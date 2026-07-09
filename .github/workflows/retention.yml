@@ -15,8 +15,7 @@ jobs:
         with:
           image-names: docker/*-dev
           cut-off: A week ago UTC
-          account-type: org
-          org-name: baresip
+          account: baresip
           keep-at-least: 1
           untagged-only: true
           token: ${{ secrets.PAT }}
@@ -26,8 +25,7 @@ jobs:
         with:
           image-names: docker/*
           cut-off: six months ago UTC
-          account-type: org
-          org-name: baresip
+          account: baresip
           keep-at-least: 1
           skip-tags: latest
           token: ${{ secrets.PAT }}
