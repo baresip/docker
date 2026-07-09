@@ -14,7 +14,7 @@ jobs:
         uses: snok/container-retention-policy@v3.1.0
         with:
           image-names: docker/*-dev
-          cut-off: A week ago UTC
+          cut-off: 1w
           account: baresip
           keep-n-most-recent: 3
           token: ${{ secrets.PAT }}
@@ -23,7 +23,7 @@ jobs:
         uses: snok/container-retention-policy@v3.1.0
         with:
           image-names: docker/*
-          cut-off: six months ago UTC
+          cut-off: 6m
           account: baresip
           keep-n-most-recent: 3
           skip-tags: latest
