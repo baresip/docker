@@ -16,8 +16,7 @@ jobs:
           image-names: docker/*-dev
           cut-off: A week ago UTC
           account: baresip
-          keep-at-least: 1
-          untagged-only: true
+          keep-n-most-recent: 3
           token: ${{ secrets.PAT }}
 
       - name: Delete 'stable' containers older six months
@@ -26,6 +25,6 @@ jobs:
           image-names: docker/*
           cut-off: six months ago UTC
           account: baresip
-          keep-at-least: 1
+          keep-n-most-recent: 3
           skip-tags: latest
           token: ${{ secrets.PAT }}
