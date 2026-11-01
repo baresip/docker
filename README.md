@@ -40,6 +40,22 @@ docker run --rm -it --device=/dev/snd baresip
 docker run --network host --rm -it baresip
 ```
 
+### baresip-apps
+
+The [baresip-apps](https://github.com/baresip/baresip-apps) image extends the
+baresip image with additional modules (auloop, autotest, b2bua, calltimer,
+ebuacip, intercom, kaoptions, multicast, parcall, qualify, redirect, vidloop,
+...).
+
+```bash
+docker pull ghcr.io/baresip/docker/baresip-apps:latest
+docker run --rm -it --volume=/home/user/.baresip:/root/.baresip baresip-apps
+```
+
+The extra modules are not loaded automatically. Enable them in your baresip
+config with `module <name>.so` or `module_app <name>.so` lines, e.g.
+`module b2bua.so`.
+
 ### Podman
 
 All examples should work fine with podman too, just replace `docker` with

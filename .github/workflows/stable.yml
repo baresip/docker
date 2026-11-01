@@ -18,6 +18,7 @@ on:
 env:
   VERSION_RE: v4.12.0
   VERSION_BARESIP: v4.12.0
+  VERSION_BARESIP_APPS: v4.12.0
 
 jobs:
   libre:
@@ -44,7 +45,7 @@ jobs:
       with:
         context: libre
         platforms: linux/amd64,linux/arm64
-        push: true
+        push: ${{ github.event_name != 'pull_request' }}
         tags: |
           ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION_RE }}
           ghcr.io/${{ env.IMAGE_NAME }}:latest
@@ -75,10 +76,41 @@ jobs:
       with:
         context: baresip
         platforms: linux/amd64,linux/arm64
-        push: true
+        push: ${{ github.event_name != 'pull_request' }}
         tags: |
           ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION_BARESIP }}
           ghcr.io/${{ env.IMAGE_NAME }}:latest
         build-args: |
           VERSION=${{ env.VERSION_BARESIP }}
           IMAGE=ghcr.io/baresip/docker/libre:latest
+
+  baresip-apps:
+    env:
+        IMAGE_NAME: ${{ github.repository }}/baresip-apps
+    needs: [ "baresip" ]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v7
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v4
+
+    - name: Log into registry
+      uses: docker/login-action@v4
+      with:
+        registry: "ghcr.io"
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build and push
+      uses: docker/build-push-action@v7
+      with:
+        context: baresip-apps
+        platforms: linux/amd64,linux/arm64
+        push: ${{ github.event_name != 'pull_request' }}
+        tags: |
+          ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION_BARESIP_APPS }}
+          ghcr.io/${{ env.IMAGE_NAME }}:latest
+        build-args: VERSION=${{ env.VERSION_BARESIP_APPS }}
